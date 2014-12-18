@@ -1,50 +1,60 @@
 <?php
-/*
-The comments page for Bones
-*/
-
-// don't load it if you can't comment
 if ( post_password_required() ) {
   return;
 }
+if ( have_comments() ) :
+  $commArgs = array(
+    'style'             => 'div',
+    'short_ping'        => true,
+    'avatar_size'       => 40,
+    'callback'          => 'jcg_comments',
+    'type'              => 'all',
+    'reply_text'        => 'Reply',
+    'page'              => '',
+    'per_page'          => '',
+    'reverse_top_level' => null,
+    'reverse_children'  => '',
+    'echo'              => false
+  );
+  $commNumber     = get_comments_number();
+  $commPagesCount = get_comment_pages_count();
+
+  if ($commNumber == 0) {
+    $commTitle = 'No Comments';
+  } elseif ($commNumber > 1) {
+    $commTitle = $commNumber . ' Comments';
+  } else {
+    $commTitle = '1 Comment';
+  }
+
+  $comm = '<h3 id="comments-title">' . $commTitle . '</h3>';
+
+  $comm .= '<section class="commentlist">';
+    $comm .= wp_list_comments($commArgs);
+  $comm .= '</section>';
+
+  echo $comm;
+
+  if ( $commPagesCount > 1 && get_option( 'page_comments' ) ) {
+    $commNav = '<nav class="navigation comment-navigation" role="navigation">';
+      $commNav .= '<div class="comment-nav-prev">';
+        $commNav .= get_previous_comments_link('&larr; Previous Comments');
+      $commNav .= '</div>';
+
+      $commNav .= '<div class="comment-nav-next">';
+        $commNav .= get_next_comments_link('More Comments &rarr;');
+      $commNav .= '</div>';
+    $commNav .= '</nav>';
+
+    echo $commNav;
+  }
+
+  if ( ! comments_open() ) {
+    echo '<p class="no-comments">Comments are closed.</p>';
+  }
+
+endif;
+
+comment_form();
 
 ?>
-
-<?php // You can start editing here. ?>
-
-  <?php if ( have_comments() ) : ?>
-
-    <h3 id="comments-title" class="h2"><?php comments_number( __( '<span>No</span> Comments', 'bonestheme' ), __( '<span>One</span> Comment', 'bonestheme' ), __( '<span>%</span> Comments', 'bonestheme' ) );?></h3>
-
-    <section class="commentlist">
-      <?php
-        wp_list_comments( array(
-          'style'             => 'div',
-          'short_ping'        => true,
-          'avatar_size'       => 40,
-          'callback'          => 'bones_comments',
-          'type'              => 'all',
-          'reply_text'        => 'Reply',
-          'page'              => '',
-          'per_page'          => '',
-          'reverse_top_level' => null,
-          'reverse_children'  => ''
-        ) );
-      ?>
-    </section>
-
-    <?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
-    	<nav class="navigation comment-navigation" role="navigation">
-      	<div class="comment-nav-prev"><?php previous_comments_link( __( '&larr; Previous Comments', 'bonestheme' ) ); ?></div>
-      	<div class="comment-nav-next"><?php next_comments_link( __( 'More Comments &rarr;', 'bonestheme' ) ); ?></div>
-    	</nav>
-    <?php endif; ?>
-
-    <?php if ( ! comments_open() ) : ?>
-    	<p class="no-comments"><?php _e( 'Comments are closed.' , 'bonestheme' ); ?></p>
-    <?php endif; ?>
-
-  <?php endif; ?>
-
-  <?php comment_form(); ?>
-
