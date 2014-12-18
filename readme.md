@@ -6,8 +6,6 @@ This fork is what I end up doing to the source code most of the time. That way I
 
 Bones by:
 
-Designed by Eddie Machado
-
-Original repo: https://github.com/eddiemachado/bones
-
+Designed by Eddie Machado 
+Original repo: https://github.com/eddiemachado/bones 
 Bones project site: http://themble.com/bones
