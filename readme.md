@@ -1,38 +1,13 @@
-# Bones
-A Lightweight Wordpress Development Theme
+# Starter Theme
 
-Bones is designed to make the life of developers easier. It's built
-using HTML5 & has a strong semantic foundation.
-It's constantly growing so be sure to check back often if you are a
-frequent user. I'm always open to contribution. :)
+Every time I have to make a new WordPress theme I download Bones. If you need to start a theme from scratch I highly recommend it, very well documented and reliable code.
+
+This fork is what I end up doing to the source code most of the time. That way I can make copies of this version and get started even faster.
+
+Bones by:
 
 Designed by Eddie Machado
-http://themble.com/bones
 
-License: WTFPL
-License URI: http://sam.zoy.org/wtfpl/
-Are You Serious? Yes.
+Original repo: https://github.com/eddiemachado/bones
 
-#### Special Thanks to:
-Paul Irish & the HTML5 Boilerplate
-Yoast for some WP functions & optimization ideas
-Andrew Rogers for code optimization
-David Dellanave for speed & code optimization
-and several other developers. :)
-
-#### Submit Bugs & or Fixes:
-https://github.com/eddiemachado/bones/issues
-
-To view Release & Update Notes, read the log.txt file inside
-the library folder.
-
-For more news and to see why my parents constantly ask me what I'm
-doing with my life, follow me on twitter: @eddiemachado
-
-## Helpful Tools & Links
-
-Yeoman generator to quickly install Bones Wordpress starter theme into your Wordpress theme folder
-by 0dp
-https://github.com/0dp/generator-wp-bones
-
-
+Bones project site: http://themble.com/bones
