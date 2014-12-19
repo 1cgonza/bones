@@ -7,13 +7,11 @@ function jcg_init() {
   add_editor_style();
   require_once( 'library/custom-post-type.php' );
   add_action( 'init', 'jcg_head_cleanup' );
-  add_filter( 'wp_title', 'rw_title', 10, 3 );
   // remove WP version from RSS
   add_filter( 'the_generator', 'jcg_rss_version' );
-  // remove injected CSS for galleries
-  add_filter( 'gallery_style', 'jcg_gallery_style' );
   add_action( 'wp_enqueue_scripts', 'jcg_scripts_and_styles', 999 );
 
+  // Add the theme supports
   jcg_theme_support();
 
   // adding sidebars to Wordpress (these are created in functions.php)
@@ -21,8 +19,6 @@ function jcg_init() {
   add_filter( 'the_content', 'jcg_filter_ptags_on_images' );
   add_filter( 'excerpt_more', 'jcg_excerpt_more' );
 }
-
-// let's get this party started
 add_action( 'after_setup_theme', 'jcg_init' );
 
 
@@ -119,7 +115,6 @@ function jcg_comments( $comment, $args, $depth ) {
   // WP closes this div. (If you add the closing tag the HTML structure breaks)
 
   echo $jcgComment;
-
 }
 /*-----  End of COMMENT LAYOUT  ------*/
 
