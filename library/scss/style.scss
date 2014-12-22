@@ -25,9 +25,6 @@ Author URI: http://juancgonzalez.com
 =            MEDIA QUERIES (BREAKPOINTS)            =
 ===================================================*/
 @import 'breakpoints/base';
-@media only screen and (min-width: 481px) {
-  @import 'breakpoints/481up';
-}
 @media only screen and (min-width: 768px) {
   @import 'breakpoints/768up';
 }
