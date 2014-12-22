@@ -1,8 +1,8 @@
-<div id="sidebar1" class="sidebar m-all t-1of3 d-2of7 last-col cf" role="complementary">
+<div id="main-sidebar" class="sidebar m-100 t-100 d-20 ld-30 last-col cf" role="complementary">
 
   <?php
-  if ( is_active_sidebar('sidebar1') ) {
-    dynamic_sidebar( 'sidebar1' );
+  if ( is_active_sidebar('main-sidebar') ) {
+    dynamic_sidebar( 'main-sidebar' );
   }
   ?>
 
