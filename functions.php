@@ -35,8 +35,8 @@ add_filter( 'image_size_names_choose', 'jcg_custom_image_sizes' );
 
 function jcg_custom_image_sizes( $sizes ) {
     return array_merge( $sizes, array(
-        'thumb-600x150' => __('600px by 150px'),
-        'thumb-300x100' => __('300px by 100px'),
+        'thumb-600x150' => '600px by 150px',
+        'thumb-300x100' => '300px by 100px',
     ) );
 }
 
