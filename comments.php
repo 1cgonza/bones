@@ -37,13 +37,13 @@ if ( have_comments() ) :
 
   if ( $commPagesCount > 1 && get_option( 'page_comments' ) ) {
     $commNav = '<nav class="navigation comment-navigation" role="navigation">';
-      $commNav .= '<div class="comment-nav-prev">';
+      $commNav .= '<span class="comment-nav-prev">';
         $commNav .= get_previous_comments_link('&larr; Previous Comments');
-      $commNav .= '</div>';
+      $commNav .= '</span>';
 
-      $commNav .= '<div class="comment-nav-next">';
+      $commNav .= '<span class="comment-nav-next">';
         $commNav .= get_next_comments_link('More Comments &rarr;');
-      $commNav .= '</div>';
+      $commNav .= '</span>';
     $commNav .= '</nav>';
 
     echo $commNav;
