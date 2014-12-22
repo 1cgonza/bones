@@ -94,15 +94,15 @@ function jcg_page_nav() {
   } else {
     $newNav = '<nav class="pagination">';
     $newNav .= paginate_links( array(
-      'base'         => str_replace( $bignum, '%#%', esc_url( get_pagenum_link($bignum) ) ),
-      'format'       => '',
-      'current'      => max( 1, get_query_var('paged') ),
-      'total'        => $wp_query->max_num_pages,
-      'prev_text'    => '&larr;',
-      'next_text'    => '&rarr;',
-      'type'         => 'list',
-      'end_size'     => 3,
-      'mid_size'     => 3
+      'base'      => str_replace( $bignum, '%#%', esc_url( get_pagenum_link($bignum) ) ),
+      'format'    => '',
+      'current'   => max( 1, get_query_var('paged') ),
+      'total'     => $wp_query->max_num_pages,
+      'prev_text' => '&larr;',
+      'next_text' => '&rarr;',
+      'type'      => 'list',
+      'end_size'  => 3,
+      'mid_size'  => 3
     ) );
     $newNav .= '</nav>';
 
@@ -110,6 +110,14 @@ function jcg_page_nav() {
   }
 }
 /*-----  End of PAGE NAVIGATION  ------*/
+
+function jcg_main_container_class() {
+  $mainClass = 'm-100 t-100 d-80 ld-70 cf';
+  if ( ! is_active_sidebar('main-sidebar') ) {
+    $mainClass .= ' no-sidebar';
+  }
+  echo $mainClass;
+}
 
 /*==========  REMOVE <p> AROUND IMAGES  ==========*/
 function jcg_filter_ptags_on_images($content){
