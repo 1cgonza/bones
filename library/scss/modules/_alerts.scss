@@ -1,43 +1,29 @@
-/******************************************************************
-Site Name:
-Author:
-
-Stylesheet: Alert Styles
-
-If you want to use these alerts in your design, you can. If not,
-you can just remove this stylesheet.
-
-******************************************************************/
-
-
-
-// alerts and notices
 %alert {
+  border: 1px solid;
   margin: 10px;
   padding: 5px 18px;
-  border: 1px solid;
 }
 
 .alert-help {
   @extend %alert;
-  border-color: darken($alert-yellow, 5%);
   background: $alert-yellow;
+  border-color: darken($alert-yellow, 5%);
 }
 
 .alert-info {
   @extend %alert;
-  border-color: darken($alert-blue, 5%);
   background: $alert-blue;
+  border-color: darken($alert-blue, 5%);
 }
 
 .alert-error {
   @extend %alert;
-  border-color: darken($alert-red, 5%);
   background: $alert-red;
+  border-color: darken($alert-red, 5%);
 }
 
 .alert-success {
   @extend %alert;
-  border-color: darken($alert-green, 5%);
   background: $alert-green;
+  border-color: darken($alert-green, 5%);
 }
