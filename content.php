@@ -1,7 +1,6 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class('cf'); ?> role="article" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
 
   <?php
-  $postCategories = get_the_category_list();
   $postTitle      = get_the_title();
   $postURL        = get_the_permalink();
   $postDateFormat = 'F jS, Y';
@@ -13,7 +12,17 @@
   $postHeader = '<header class="article-header entry-header">';
 
     /*==========  CATEGORIES  ==========*/
-    $postHeader .= $postCategories;
+    $postCategoriesArgs = array (
+      'orderby'  => 'name',
+      'order'    => 'ASC',
+      'title_li' => '',
+      'echo'     => 0
+    );
+    $postCategories = wp_list_categories($postCategoriesArgs);
+
+    $postHeader .= '<ul class="post-categories">';
+      $postHeader .= $postCategories;
+    $postHeader .= '</ul>';
 
     /*==================================
     =            POST TITLE            =
@@ -63,7 +72,37 @@
   </section>
 
   <footer class="article-footer">
-    <?php the_tags( '<p class="tags">', ', ', '</p>' ); ?>
+    <?php
+    the_tags( '<p class="tags">', '<span>|</span> ', '</p>' );
+
+    /*========================================
+    =            POSTS NAVIGATION            =
+    ========================================*/
+    $previousPost = get_previous_post();
+    $nextPost = get_next_post();
+
+    if ( is_single() ) {
+      $postsNav = '<nav class="posts-navigation cf" role="navigation">';
+
+      if ($previousPost) {
+        $postsNav .= '<span class="previous-post left">&larr; ';
+          $postsNav .= '<a href="' . $previousPost->guid . '" rel="prev">' . $previousPost->post_title . '</a>';
+        $postsNav .= '</span>';
+      }
+
+      if ($nextPost) {
+        $postsNav .= '<span class="next-post right">';
+          $postsNav .= '<a href="' . $nextPost->guid . '" rel="next">' . $nextPost->post_title . '</a>';
+        $postsNav .= ' &rarr;</span>';
+      }
+
+      $postsNav .= '</nav>';
+
+      echo $postsNav;
+
+    }
+    /*-----  End of POSTS NAVIGATION  ------*/
+    ?>
   </footer>
 
   <?php comments_template(); ?>
