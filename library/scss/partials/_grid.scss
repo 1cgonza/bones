@@ -1,5 +1,5 @@
 @mixin grid-col {
-  float: left;
+  display: inline-block;
   padding-right: .5em;
 }
 
@@ -158,12 +158,11 @@
 =            FIXING LAYOUT            =
 =====================================*/
 .last-col {
-  float: right;
   padding-right: 0 !important;
 }
 
 .no-sidebar {
-  float: none;
+  display: block !important;
   margin: 0 auto;
 }
 
