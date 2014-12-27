@@ -1,43 +1,43 @@
 <?php
-require_once( 'library/jcg.php' );
-require_once( 'library/admin.php' );
+require_once('library/jcg.php');
+require_once('library/admin.php');
 
 function jcg_init() {
   // Load editor-style.css
   add_editor_style();
-  require_once( 'library/custom-post-type.php' );
+  require_once('library/custom-post-type.php');
   add_action( 'init', 'jcg_head_cleanup' );
   // remove WP version from RSS
-  add_filter( 'the_generator', 'jcg_rss_version' );
-  add_action( 'wp_enqueue_scripts', 'jcg_scripts_and_styles', 999 );
+  add_filter('the_generator', 'jcg_rss_version');
+  add_action('wp_enqueue_scripts', 'jcg_scripts_and_styles', 999);
 
   // Add the theme supports
   jcg_theme_support();
 
   // adding sidebars to Wordpress (these are created in functions.php)
-  add_action( 'widgets_init', 'jcg_register_sidebars' );
-  add_filter( 'the_content', 'jcg_filter_ptags_on_images' );
-  add_filter( 'excerpt_more', 'jcg_excerpt_more' );
+  add_action('widgets_init', 'jcg_register_sidebars');
+  add_filter('the_content', 'jcg_filter_ptags_on_images');
+  add_filter('excerpt_more', 'jcg_excerpt_more');
 }
-add_action( 'after_setup_theme', 'jcg_init' );
+add_action('after_setup_theme', 'jcg_init');
 
 
 /*==========  OEMBED DEFAULT  ==========*/
-if ( ! isset( $content_width ) ) {
+if ( ! isset($content_width) ) {
   $content_width = 640;
 }
 
 /*==========  THUMBNAILS  ==========*/
-add_image_size( 'thumb-600x150', 600, 150, true );
-add_image_size( 'thumb-300x100', 300, 100, true );
+add_image_size('thumb-600x150', 600, 150, true);
+add_image_size('thumb-300x100', 300, 100, true);
 
 add_filter( 'image_size_names_choose', 'jcg_custom_image_sizes' );
 
-function jcg_custom_image_sizes( $sizes ) {
-    return array_merge( $sizes, array(
-        'thumb-600x150' => '600px by 150px',
-        'thumb-300x100' => '300px by 100px',
-    ) );
+function jcg_custom_image_sizes($sizes) {
+  return array_merge($sizes, array(
+    'thumb-600x150' => '600px by 150px',
+    'thumb-300x100' => '300px by 100px',
+  ) );
 }
 
 /*==========  SIDEBARS  ==========*/
@@ -59,11 +59,11 @@ function jcg_register_sidebars() {
 function jcg_comments( $comment, $args, $depth ) {
   $GLOBALS['comment'] = $comment;
 
-  $commClasses     = comment_class( 'cf', $comment->comment_ID, $comment->comment_post_ID, false );
+  $commClasses     = comment_class('cf', $comment->comment_ID, $comment->comment_post_ID, false);
   $commAuthorEmail = get_comment_author_email();
   $gravatarData    = md5($commAuthorEmail);
   $noImgSrc        = get_template_directory_uri() . '/library/images/nothing.gif';
-  $commentLink     = htmlspecialchars( get_comment_link( $comment->comment_ID ) );
+  $commentLink     = htmlspecialchars( get_comment_link($comment->comment_ID) );
   $commDate        = new DateTime($comment->comment_date);
   $commDateFormat  = 'F jS, Y';
   $commAuthorURL   = get_comment_author_link();

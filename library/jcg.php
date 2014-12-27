@@ -2,25 +2,25 @@
 
 function jcg_head_cleanup() {
   // category feeds
-  remove_action( 'wp_head', 'feed_links_extra', 3 );
+  remove_action('wp_head', 'feed_links_extra', 3);
   // post and comment feeds
-  remove_action( 'wp_head', 'feed_links', 2 );
+  remove_action('wp_head', 'feed_links', 2);
   // EditURI link
-  remove_action( 'wp_head', 'rsd_link' );
+  remove_action('wp_head', 'rsd_link');
   // windows live writer
-  remove_action( 'wp_head', 'wlwmanifest_link' );
+  remove_action('wp_head', 'wlwmanifest_link');
   // previous link
-  remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 );
+  remove_action('wp_head', 'parent_post_rel_link', 10, 0);
   // start link
-  remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );
+  remove_action('wp_head', 'start_post_rel_link', 10, 0);
   // links for adjacent posts
-  remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
+  remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
   // WP version
-  remove_action( 'wp_head', 'wp_generator' );
+  remove_action('wp_head', 'wp_generator');
   // remove WP version from css
-  add_filter( 'style_loader_src', 'bones_remove_wp_ver_css_js', 9999 );
+  add_filter('style_loader_src', 'bones_remove_wp_ver_css_js', 9999);
   // remove Wp version from scripts
-  add_filter( 'script_loader_src', 'bones_remove_wp_ver_css_js', 9999 );
+  add_filter('script_loader_src', 'bones_remove_wp_ver_css_js', 9999);
 
 }
 
@@ -28,9 +28,9 @@ function jcg_head_cleanup() {
 function jcg_rss_version() { return ''; }
 
 // remove WP version from scripts
-function bones_remove_wp_ver_css_js( $src ) {
-  if ( strpos( $src, 'ver=' ) )
-    $src = remove_query_arg( 'ver', $src );
+function bones_remove_wp_ver_css_js($src) {
+  if ( strpos($src, 'ver=') )
+    $src = remove_query_arg('ver', $src);
   return $src;
 }
 
@@ -48,13 +48,13 @@ function jcg_scripts_and_styles() {
       wp_enqueue_script( 'comment-reply' );
     }
 
-    wp_register_script( 'jcg-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true );
+    wp_register_script( 'jcg-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', array('jquery'), '', true );
 
-    wp_enqueue_script( 'jcg-modernizr' );
-    wp_enqueue_style( 'jcg-stylesheet' );
+    wp_enqueue_script('jcg-modernizr');
+    wp_enqueue_style('jcg-stylesheet');
 
-    wp_enqueue_script( 'jquery' );
-    wp_enqueue_script( 'jcg-js' );
+    wp_enqueue_script('jquery');
+    wp_enqueue_script('jcg-js');
   }
 }
 
@@ -62,17 +62,17 @@ function jcg_scripts_and_styles() {
 =            THEME SUPPORT            =
 =====================================*/
 function jcg_theme_support() {
-  add_theme_support( 'post-thumbnails' );
+  add_theme_support('post-thumbnails');
   set_post_thumbnail_size(125, 125, true);
   add_theme_support('automatic-feed-links');
 
   // output the following with HTML5 syntax.
   add_theme_support( 'html5', array('comment-form', 'search-form', 'gallery', 'caption') );
 
-  add_theme_support( 'title-tag' ); // New on WP 4.1
+  add_theme_support('title-tag'); // New on WP 4.1
 
   /*==========  MENUS  ==========*/
-  add_theme_support( 'menus' );
+  add_theme_support('menus');
   register_nav_menus(
     array(
       'main-nav' => 'The Main Menu'
@@ -127,7 +127,7 @@ function jcg_filter_ptags_on_images($content){
 /*==========  REPLACE [...] FOR READ MORE TEXT  ==========*/
 function jcg_excerpt_more($more) {
   global $post;
-  return '...  <a class="excerpt-read-more" href="'. get_permalink( $post->ID ) . '" title="Read ' . esc_attr( get_the_title( $post->ID ) ) . '">' . 'Read more &raquo;</a>';
+  return '...  <a class="excerpt-read-more" href="'. get_permalink($post->ID) . '" title="Read ' . esc_attr( get_the_title($post->ID) ) . '">' . 'Read more &raquo;</a>';
 }
 
 ?>
