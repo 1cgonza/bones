@@ -1,5 +1,5 @@
 body {
-  background-color: $black;
+  background-color: $light-gray;
   color: $text-color;
   font-family: $lato;
   font-size: 100%;
@@ -86,7 +86,6 @@ h5 {
 =            SITE HEADER            =
 ===================================*/
 .header {
-  background-color: $white;
   font-size: 0;
 
   #site-name {
@@ -170,10 +169,18 @@ h5 {
 ===============================*/
 #content {
   margin-top: 5px;
+  font-size: 0; // assign font size to any containers inside, fix for inline-block layout
+
+  main,
+  #main,
+  .sidebar {
+    font-size: 16px;
+    vertical-align: top;
+    background-color: $white;
+  }
 }
 
 .hentry {
-  background-color: $white;
   margin-bottom: 5px;
 
   header {
@@ -416,22 +423,19 @@ h5 {
     .wp-caption {
       max-width: 100%;
       background: #eee;
-      padding: 5px;
+      padding: 0 0 .5em;
 
-      /* images inside wp-caption */
       img {
         max-width: 100%;
         margin-bottom: 0;
-        width: 100%;
       }
 
       p.wp-caption-text {
-        font-size: 0.85em;
+        font-size: .85em;
         margin: 4px 0 7px;
         text-align: center;
       }
-
-    } /* end .wp-caption */
+    }
 
     /* image gallery styles */
     .gallery {
@@ -788,72 +792,43 @@ SIDEBARS & ASIDES
 *********************/
 
 .sidebar {
-  background-color: $white;
+  background-color: $light-gray;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
-  .widgettitle {}
+.widget {
 
-  .widget {
+  ul {
 
-    ul {
+    li {
 
-      li {
+      &:first-child {}
 
-        &:first-child {}
+      &:last-child {}
 
-        &:last-child {}
+      a {}
 
-        a {}
-
-        /* deep nesting */
-        ul {}
-
-      }
+      /* deep nesting */
+      ul {}
 
     }
 
   }
 
-  .no-widgets {
-    background-color: $white;
-    padding: 1.5em;
-    text-align: center;
-    border: 1px solid $border-color;
-    border-radius: 2px;
-    margin-bottom: 1.5em;
-  }
-
-/*********************
-FOOTER STYLES
-*********************/
-
-.footer {
-  clear: both;
-  background-color: $black;
-  color: $light-gray;
 }
 
-  /*
-  if you checked out the link above:
-  http://www.alistapart.com/articles/organizing-mobile/
-  you'll want to style the footer nav
-  a bit more in-depth. Remember to keep
-  it simple because you'll have to
-  override these styles for the desktop
-  view.
-  */
-  .footer-links {
-
-    ul {
-
-      li {}
-
-    }
-
-  } /* end .footer-links */
+/*===================================
+=            SITE FOOTER            =
+===================================*/
+.footer {}
+.copyright {}
 
 
-  .copyright {}
+/*-----  End of SITE FOOTER  ------*/
 
 /*==========  ADDITIONAL NOMALIZE RULES  ==========*/
 * {
