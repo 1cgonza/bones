@@ -17,7 +17,7 @@
   <body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
 
     <div id="container">
-      <header class="header" role="banner" itemscope itemtype="http://schema.org/WPHeader">
+      <header class="header <?php jcg_main_container_class(); ?>" role="banner" itemscope itemtype="http://schema.org/WPHeader">
         <p id="site-name" itemscope itemtype="http://schema.org/Organization"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?></a></p>
         <nav role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
           <?php
