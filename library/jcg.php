@@ -18,9 +18,9 @@ function jcg_head_cleanup() {
   // WP version
   remove_action('wp_head', 'wp_generator');
   // remove WP version from css
-  add_filter('style_loader_src', 'bones_remove_wp_ver_css_js', 9999);
+  add_filter('style_loader_src', 'jcg_remove_wp_ver_css_js', 9999);
   // remove Wp version from scripts
-  add_filter('script_loader_src', 'bones_remove_wp_ver_css_js', 9999);
+  add_filter('script_loader_src', 'jcg_remove_wp_ver_css_js', 9999);
 
 }
 
@@ -28,7 +28,7 @@ function jcg_head_cleanup() {
 function jcg_rss_version() { return ''; }
 
 // remove WP version from scripts
-function bones_remove_wp_ver_css_js($src) {
+function jcg_remove_wp_ver_css_js($src) {
   if ( strpos($src, 'ver=') )
     $src = remove_query_arg('ver', $src);
   return $src;
