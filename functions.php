@@ -60,14 +60,12 @@ function jcg_comments( $comment, $args, $depth ) {
   $GLOBALS['comment'] = $comment;
 
   $commClasses     = comment_class('cf', $comment->comment_ID, $comment->comment_post_ID, false);
-  $commAuthorEmail = get_comment_author_email();
-  $gravatarData    = md5($commAuthorEmail);
-  $noImgSrc        = get_template_directory_uri() . '/library/images/nothing.gif';
-  $commentLink     = htmlspecialchars( get_comment_link($comment->comment_ID) );
   $commDate        = new DateTime($comment->comment_date);
-  $commDateFormat  = 'F jS, Y';
-  $commAuthorURL   = get_comment_author_link();
-  $commEditURL     = get_edit_comment_link();
+
+  $gravatarData    = md5( strtolower( trim( get_comment_author_email() ) ) );
+  $gravatarDefault = get_template_directory_uri() . '/library/images/nothing.gif';
+  $gravatarSize    = 40;
+  $gravatarURL     = 'http://www.gravatar.com/avatar/' . $gravatarData . '?d=' . urlencode($gravatarDefault) . '&s=' . $gravatarSize;
 
   $jcgComment = '<div id="comment-' . $comment->comment_ID . '" ' . $commClasses . '>';
 
@@ -76,17 +74,16 @@ function jcg_comments( $comment, $args, $depth ) {
       $jcgComment .= '<header class="comment-author vcard">';
 
         /*==========  GRAVATAR  ==========*/
-        $jcgComment .= '<img data-gravatar="http://www.gravatar.com/avatar/' . $gravatarData . '?s=40" class="load-gravatar avatar avatar-48 photo" height="40" width="40" src="' . $noImgSrc . '" />';
+        $jcgComment .= '<div class="comment-author-avatar"><img src="' . $gravatarURL . '" alt="" /></div>';
 
-        /*==========  AUTHOR  ==========*/
-        $jcgComment .= '<a class="comment-edit-link" href="' . $commEditURL . '" target="_self">(Edit)</a>';
-        $jcgComment .= '<cite class="fn">' . $commAuthorURL . '</cite>';
-        // printf( '<cite class="fn"></cite> %2$s', , edit_comment_link('(Edit)','  ','') );
+        $jcgComment .= '<div class="comment-author-meta">';
+          /*==========  AUTHOR  ==========*/
+          $jcgComment .= '<a class="comment-edit-link" href="' . get_edit_comment_link() . '" target="_self">(Edit) </a>';
+          $jcgComment .= '<span class="comment-author">' . get_comment_author_link() . ' </span>';
 
-        /*==========  TIMESTAMP  ==========*/
-        $jcgComment .= '<time datetime="' . $commDate->format('Y-m-j') . '">';
-          $jcgComment .= '<a href="' . $commentLink . '">' . $commDate->format($commDateFormat) . '</a>';
-        $jcgComment .= '</time>';
+          /*==========  TIMESTAMP  ==========*/
+          $jcgComment .= '<time datetime="' . $commDate->format('Y-m-j') . '"> | ' . $commDate->format('F jS, Y') . '</time>';
+        $jcgComment .= '</div>';
 
       $jcgComment .= '</header>';
 
